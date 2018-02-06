@@ -11,13 +11,13 @@
 
 import sys
 import mainView
-import ViewControl
+import mainViewControl
 
 from PyQt5.QtWidgets import QApplication
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
-    MainWindow = ViewControl.MyWindow()
+    MainWindow = mainViewControl.MyWindow()
     # ui = mainView.Ui_MainWindow()
     # ui.setupUi(MainWindow)
     MainWindow.show()

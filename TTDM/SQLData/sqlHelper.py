@@ -11,14 +11,15 @@
 
 import pymysql
 
+from DataModel.labelinfo import *
+
 class sqlHelper(object):
     """docstring for sqlHelper."""
-    def __init__(self, arg):
+    def __init__(self):
         super(sqlHelper, self).__init__()
-        self.arg = arg
 
     #创建数据库表
-    def Create_database_table(arg):
+    def Create_database_table(self):
         print("Create_database_table!")
         # 打开数据库连接
         db = pymysql.connect("localhost","root","","labels" )
@@ -28,26 +29,26 @@ class sqlHelper(object):
         cursor.execute("DROP TABLE IF EXISTS EMPLOYEE")
         # 使用预处理语句创建表
         sql = """CREATE TABLE EMPLOYEE (
-                 FIRST_NAME  CHAR(20) NOT NULL,
-                 LAST_NAME  CHAR(20),
-                 AGE INT,
-                 SEX CHAR(1),
-                 INCOME FLOAT )"""
+                    SN  CHAR(20) NOT NULL,
+                    YZM  CHAR(20) NOT NULL,
+                    DT  CHAR(20) NOT NULL,
+                    PT  CHAR(20) NOT NULL,  
+                    SAVE CHAR(1) )"""
         cursor.execute(sql)
         # 关闭数据库连接
         db.close()
 
     #数据库插入操作
-    def Insert_Database(arg):
+    def Insert_Database(self,labinfo):
         print("Insert_Database!")
         # 打开数据库连接
         db = pymysql.connect("localhost","root","","labels" )
         # 使用cursor()方法获取操作游标
         cursor = db.cursor()
         # SQL 插入语句
-        sql = """INSERT INTO EMPLOYEE(FIRST_NAME,
-                 LAST_NAME, AGE, SEX, INCOME)
-                 VALUES ('Mac', 'Mohan', 20, 'M', 2000)"""
+        sql = """INSERT INTO EMPLOYEE(
+                 SN, YZM, DT, PT, SAVE)
+                 VALUES ('%s', '%s', '%s', '%s', %s)""" % (labinfo.SN,labinfo.YZM,labinfo.DT,labinfo.PT,labinfo.save)
         try:
            # 执行sql语句
            cursor.execute(sql)
@@ -60,7 +61,7 @@ class sqlHelper(object):
         db.close()
 
     #数据库查询操作
-    def Query_Database(arg):
+    def Query_Database(self):
         # 打开数据库连接
         db = pymysql.connect("localhost","root","","labels" )
         # 使用cursor()方法获取操作游标
@@ -73,21 +74,23 @@ class sqlHelper(object):
             cursor.execute(sql)
             # 获取所有记录列表
             results = cursor.fetchall()
-            for row in results:
-                fname = row[0]
-                lname = row[1]
-                age = row[2]
-                sex = row[3]
-                income = row[4]
-                # 打印结果
-                print ("fname=%s,lname=%s,age=%d,sex=%s,income=%d" % \
-                (fname, lname, age, sex, income ))
+            # for row in results:
+            #     fname = row[0]
+            #     lname = row[1]
+            #     age = row[2]
+            #     sex = row[3]
+            #     income = row[4]
+            #     # 打印结果
+            #     print ("fname=%s,lname=%s,age=%d,sex=%s,income=%d" % \
+            #     (fname, lname, age, sex, income ))
         except:
             print ("Error: unable to fetch data")
             # 关闭数据库连接
             db.close()
+        return results
+
     #数据库更新操作
-    def Updata_Database(arg):
+    def Updata_Database(self):
         # 打开数据库连接
         db = pymysql.connect("localhost","root","","labels" )
         # 使用cursor()方法获取操作游标
@@ -106,7 +109,7 @@ class sqlHelper(object):
         db.close()
 
     #删除操作
-    def Del_Database(arg):
+    def Del_Database(self):
         # 打开数据库连接
         db = pymysql.connect("localhost","root","","labels" )
         # 使用cursor()方法获取操作游标
@@ -124,12 +127,16 @@ class sqlHelper(object):
         # 关闭连接
         db.close()
 
-
-
-print ("sqlHelper test ^_^ ")
-dd = sqlHelper("Create")
-dd.Create_database_table()
-dd.Insert_Database()
-dd.Query_Database()
-dd.Updata_Database()
-dd.Del_Database()
+    def sqlHelper_test(self):
+        print ("sqlHelper test ^_^ ")
+        labinfo = labelInfo();
+        labinfo.YZM = "ddd"
+        labinfo.DT = "ddds"
+        labinfo.PT = "ddd"
+        labinfo.SN = "ddsss"
+        labinfo.save = "1"
+        print(labinfo.toString())
+        self.Insert_Database(labinfo)
+        # dd.Query_Database()
+        # dd.Updata_Database()
+        # dd.Del_Database()

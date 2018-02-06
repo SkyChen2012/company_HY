@@ -80,11 +80,6 @@
     </property>
     <column>
      <property name="text">
-      <string>序列号</string>
-     </property>
-    </column>
-    <column>
-     <property name="text">
       <string>产品型号</string>
      </property>
     </column>
