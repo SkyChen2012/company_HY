@@ -24,9 +24,7 @@ from SQLData.sqlHelper import *
 class MyWindow(QtWidgets.QMainWindow,mainView.Ui_MainWindow,QtWidgets.QTableWidget):
     def __init__(self):
         super(MyWindow, self).__init__()
-        self.setupUi(
-            self
-        )
+        self.setupUi(self)
 
     def GetYZM(self):
         ticks = time.strftime("%Y-%m-%d %H:%M:%S",time.localtime())
