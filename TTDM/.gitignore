@@ -5,6 +5,8 @@ Desktop.ini
 
 #mac
 .DS_Store
+*.xls
+*.xlsx
 
 # Python:
 *.py[cod]

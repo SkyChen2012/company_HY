@@ -32,7 +32,7 @@ class sqlHelper(object):
                     SN  CHAR(20) NOT NULL,
                     YZM  CHAR(20) NOT NULL,
                     DT  CHAR(20) NOT NULL,
-                    PT  CHAR(20) NOT NULL,  
+                    PT  CHAR(20) NOT NULL,
                     SAVE CHAR(1) )"""
         cursor.execute(sql)
         # 关闭数据库连接
@@ -66,9 +66,11 @@ class sqlHelper(object):
         db = pymysql.connect("localhost","root","","labels" )
         # 使用cursor()方法获取操作游标
         cursor = db.cursor()
+        results = None
         # SQL 查询语句
-        sql = "SELECT * FROM EMPLOYEE \
-                WHERE INCOME > '%d'" % (1000)
+        # sql = "SELECT * FROM EMPLOYEE \
+                # WHERE INCOME > '%d'" % (1000)
+        sql = "SELECT * FROM EMPLOYEE LIMIT 0,100"
         try:
             # 执行SQL语句
             cursor.execute(sql)
@@ -113,6 +115,7 @@ class sqlHelper(object):
         # 打开数据库连接
         db = pymysql.connect("localhost","root","","labels" )
         # 使用cursor()方法获取操作游标
+
         cursor = db.cursor()
         # SQL 删除语句
         sql = "DELETE FROM EMPLOYEE WHERE AGE > '%d'" % (20)
@@ -129,6 +132,7 @@ class sqlHelper(object):
 
     def sqlHelper_test(self):
         print ("sqlHelper test ^_^ ")
+        self.Create_database_table();
         labinfo = labelInfo();
         labinfo.YZM = "ddd"
         labinfo.DT = "ddds"
@@ -137,6 +141,8 @@ class sqlHelper(object):
         labinfo.save = "1"
         print(labinfo.toString())
         self.Insert_Database(labinfo)
-        # dd.Query_Database()
+        results = self.Query_Database()
+        for row in results:
+            print (row[0],row[1],row[2])
         # dd.Updata_Database()
         # dd.Del_Database()

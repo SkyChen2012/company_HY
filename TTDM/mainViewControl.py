@@ -72,6 +72,28 @@ class MyWindow(QtWidgets.QMainWindow,mainView.Ui_MainWindow,QtWidgets.QTableWidg
 
     def SaveDataAll(self):
         print("Save Data All ~~")
+        sql = sqlHelper()
+        results = sql.Query_Database()
+        for row in results:
+            print(row[0], row[1], row[2])
+            row_count = self.Datalist.rowCount()
+            self.Datalist.insertRow(row_count)
+
+            newItem = QTableWidgetItem(row[0])
+            self.Datalist.setItem(row_count, 0, newItem)
+
+            newItem = QTableWidgetItem(row[1])
+            self.Datalist.setItem(row_count, 1, newItem)
+
+            newItem = QTableWidgetItem(row[2])
+            self.Datalist.setItem(row_count, 2, newItem)
+
+            newItem = QTableWidgetItem(row[3])
+            self.Datalist.setItem(row_count, 3, newItem)
+
+            newItem = QTableWidgetItem(row[4])
+            self.Datalist.setItem(row_count, 4, newItem)
+
 
     def clicked(self, QModelIndex):
         print("QModelIndex->",QModelIndex)
