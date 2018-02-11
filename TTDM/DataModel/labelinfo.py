@@ -40,3 +40,12 @@ class labelInfo(object):
     def saveToSql(self):
         print("save To Sql ... ")
 
+    def defaut(self):
+        self.save = "save"
+        self.PT = "PT"
+        self.DT = "DT"
+        self.YZM = "YZM"
+        self.SN = "SN"
+        return self
+
+

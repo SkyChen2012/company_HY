@@ -17,10 +17,10 @@ import sys
 
 import requests
 
-class xxClient(object):
-    """docstring for xxClient."""
+class XXClient(object):
+    """docstring for XXClient."""
     def __init__(self, arg):
-        super(xxClient, self).__init__()
+        super(XXClient, self).__init__()
         self.arg = arg
 
     def localSocket(self,port):
@@ -51,7 +51,7 @@ class xxClient(object):
         return r
 
     def test(arg):
-        client = xxClient("Test")
+        client = XXClient("Test")
         # client.localSocket(9999)
         client.get("http://45.77.151.91:8080/Virus/version.txt")
         postdata = { 'uname':'fucker','upwd':'fucker' }

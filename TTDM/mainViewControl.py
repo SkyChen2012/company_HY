@@ -20,6 +20,7 @@ from PyQt5.QtWidgets import *
 import mainView
 from DataModel.labelinfo import *
 from SQLData.sqlHelper import *
+from XXNet.channel.xxClient import *
 
 class MyWindow(QtWidgets.QMainWindow,mainView.Ui_MainWindow,QtWidgets.QTableWidget):
     def __init__(self):
@@ -32,6 +33,8 @@ class MyWindow(QtWidgets.QMainWindow,mainView.Ui_MainWindow,QtWidgets.QTableWidg
         self.PruductType.setText("XXXXXXXXXXXXXX")
         self.DataTime.setText(ticks)
         print("Get YZM ~~")
+        Client = XXClient("Client");
+        Client.test()
         print(PTtext)
 
     def SaveData(self):
