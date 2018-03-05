@@ -13,14 +13,13 @@ import sys
 import time
 
 from PyQt5 import QtWidgets,QtGui
-from PyQt5.QtCore import *
-from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 
 import mainView
 from DataModel.labelinfo import *
 from SQLData.sqlHelper import *
 from XXNet.channel.xxClient import *
+from Config.config import *
 
 class MyWindow(QtWidgets.QMainWindow,mainView.Ui_MainWindow,QtWidgets.QTableWidget):
     def __init__(self):
@@ -35,7 +34,11 @@ class MyWindow(QtWidgets.QMainWindow,mainView.Ui_MainWindow,QtWidgets.QTableWidg
         print("Get YZM ~~")
         Client = XXClient("Client");
         Client.test()
+        config = Config();
+        print(config.GetUrl())
+        Client.get(config.GetUrl())
         print(PTtext)
+
 
     def SaveData(self):
         print("Save Data ~~")
@@ -68,8 +71,11 @@ class MyWindow(QtWidgets.QMainWindow,mainView.Ui_MainWindow,QtWidgets.QTableWidg
     def GetYZMAll(self):
         print("Get YZM All ~~")
         sql = sqlHelper()
-        sql.sqlHelper_test()
-
+        results  = sql.sqlHelper_test()
+        for row in results:
+            sData = row[0] + row[1] + row[2]
+            self.ShowData.setText(sData);
+            print (row[0],row[1],row[2])
 
     def SaveDataAll(self):
         print("Save Data All ~~")

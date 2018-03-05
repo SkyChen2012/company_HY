@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>758</width>
-    <height>567</height>
+    <width>771</width>
+    <height>551</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -75,7 +75,7 @@
       <x>10</x>
       <y>100</y>
       <width>601</width>
-      <height>391</height>
+      <height>161</height>
      </rect>
     </property>
     <column>
@@ -221,16 +221,32 @@
      <string>批量存储</string>
     </property>
    </widget>
+   <widget class="QTextEdit" name="ShowData">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>300</y>
+      <width>601</width>
+      <height>181</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>758</width>
+     <width>771</width>
      <height>22</height>
     </rect>
    </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>关于</string>
+    </property>
+   </widget>
+   <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
