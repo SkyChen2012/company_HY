@@ -20,6 +20,7 @@ from DataModel.labelinfo import *
 from SQLData.sqlHelper import *
 from XXNet.channel.xxClient import *
 from Config.config import *
+from Tools import JsonTool
 
 class MyWindow(QtWidgets.QMainWindow,mainView.Ui_MainWindow,QtWidgets.QTableWidget):
     def __init__(self):
@@ -36,7 +37,17 @@ class MyWindow(QtWidgets.QMainWindow,mainView.Ui_MainWindow,QtWidgets.QTableWidg
         Client.test()
         config = Config();
         print(config.GetUrl())
-        Client.get(config.GetUrl())
+        postdata = chr(2)+'{"Command":"Dispatch","FrameNumber":"00","Type":"DevList","Data":[{"DeviceId":"0000000000000000","Key":"deviceList"}]}' +chr(3)
+        # arr = []
+        # for t in postdata:
+        #     arr.append(ord(t))
+        # print(arr)
+        # postdatasend = ''.join(str(hex(i)) for i in arr)
+        # r = Client.post(config.GetUrl(),postdata)
+        r = Client.TCP(postdata)
+        # print(r.text)
+
+        # JsonTool.JsonToPythonDir(r.text)
         print(PTtext)
 
 

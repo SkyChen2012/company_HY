@@ -46,9 +46,21 @@ class XXClient(object):
     def post(self,url,postdata):
         # postdata = { 'uname':'fucker','upwd':'fucker' }
         # r = requests.post("http://45.77.151.91:9090/login",data=postdata)
+        print("postdata => " , postdata)
         r = requests.post(url,data=postdata)
-        print(r.text)
+        print(r)
         return r
+
+    def TCP(self,postData):
+        s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        s.connect(('192.168.82.1', 7000))
+        print(s.recv(1024))
+        print("postdata => ", postData)
+        s.send(postData.encode())
+        data = s.recv(1024).decode()
+        print("recv ==> ",data)
+        s.close()
+        return s
 
     def test(arg):
         client = XXClient("Test")

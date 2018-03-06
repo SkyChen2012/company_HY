@@ -26,6 +26,7 @@ import json
 from DataModel.labelinfo import *
 from Tools import ConversionTool
 
+
 # Python 字典类型转换为 JSON 对象
 def PythonDirToJson(data):
     # Python 字典类型转换为 JSON 对象

@@ -36,4 +36,5 @@ class Config(object):
          return mail_server
 
     def GetUrl(self):
-        return "http://blog.eting.info/honyar"
+        # return "http://blog.eting.info/honyar"
+        return "http://192.168.82.1:7000"
